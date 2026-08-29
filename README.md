@@ -12,15 +12,21 @@ Bronnen: Google Calendar, Gmail, Notion en Tana (Outliner).
   keuze vragen, nieuws, weer, en beurzen + portefeuille. Levert een
   gestileerde pagina als Artifact, een regel in de dagnotitie in Outliner, en
   een pushbericht.
-- **[weekly-roundup](.claude/skills/weekly-roundup/SKILL.md)** — terugblik op
-  de afgelopen week (afgerond/openstaand) plus een korte vooruitblik. Platte
-  tekst in de chat, geen artifact.
-- **[quarterly-review](.claude/skills/quarterly-review/SKILL.md)** —
-  voortgang op doelen/OKR's en de belangrijkste resultaten van het kwartaal.
-  Platte tekst in de chat, geen artifact.
-- **[yearly-review](.claude/skills/yearly-review/SKILL.md)** — jaaroverzicht:
-  hoogtepunten, voortgang op jaardoelen, patronen en richting voor volgend
-  jaar. Platte tekst in de chat, geen artifact.
+- **[weekly-roundup](.claude/skills/weekly-roundup/SKILL.md)** — de
+  "Weekafsluiting" volgens de Grip-methode van Rick Pastoor: agenda,
+  inboxen, taken en areas worden voorbereid, William oordeelt en kiest zelf.
+  Gestileerde pagina als Artifact, plus een regel in de weeknotitie en een
+  pushbericht.
+- **[quarterly-review](.claude/skills/quarterly-review/SKILL.md)** — de
+  "Kwartaalreview" volgens Grip: terugblik per maand, doelenbeoordeling,
+  energievragen en herijking van areas/standaarden, met kandidaat-doelen
+  voor het volgende kwartaal. Gestileerde pagina als Artifact, plus een
+  regel in de jaarnotitie en een pushbericht.
+- **[yearly-review](.claude/skills/yearly-review/SKILL.md)** — de
+  "Jaarplandag" volgens Grip, de grootste van de drie reviews: een volledige
+  terugblik op het jaar, Pastoors brainstormvragen, en de vragen voor de
+  doelen van het nieuwe jaar. Gestileerde pagina als Artifact, plus een
+  regel in de jaarnotitie, een pushbericht én een e-mail.
 
 ## Over persoonlijke gegevens in deze repo
 
