@@ -26,9 +26,11 @@ Bepaal eerst de datum en tijd in Europe/Amsterdam via bash
 Haal de events van vandaag 00:00 t/m morgen 00:00 (Europe/Amsterdam) op uit de
 agenda's die van William zijn — doorgaans een privé-agenda, een werkagenda en
 een gezinsagenda. Gebruik `list_calendars` om ze te vinden in plaats van
-ID's hard te coderen. Sorteer chronologisch, hele-dag-events bovenaan. Bewaar
-per event de `htmlLink`. Kijk ook even naar morgen: als er iets is dat
-vandaag voorbereiding vraagt, noem dat bij Beslissingen.
+ID's hard te coderen. De werkagenda levert vaak elke afspraak dubbel aan;
+ontdubbel op titel plus starttijd voordat je verder werkt. Sorteer
+chronologisch, hele-dag-events bovenaan. Bewaar per event de `htmlLink`. Kijk
+ook even naar morgen: als er iets is dat vandaag voorbereiding vraagt, noem
+dat bij Beslissingen.
 
 ## Stap 3 — Taken (Outliner / Tana)
 
@@ -250,7 +252,45 @@ Lege blokken: heeft de agenda niets, schrijf dan één rustige zin in plaats
 van een leeg kader. Zijn er geen open taken, zeg dat dan ook zo — dat is
 goed nieuws.
 
-## Stap 9 — Node in de dagnotitie
+## Stap 9 — Afspraken als meeting-nodes
+
+Zet elke echte afspraak van vandaag als losse node onder de calendar-node van
+vandaag, naast de Dagstart-node uit stap 10. Alleen afspraken met andere
+mensen — sla blokken over die geen meeting zijn: schoolrit, focusblok, lunch,
+sport, reistijd. Bij twijfel: geen deelnemers of alleen jezelf is geen meeting.
+
+Zoek de juiste supertags en velden elke ochtend opnieuw op via `list_tags` en
+`get_tag_schema`. Hardcodeer geen tag-, veld- of node-ID's in dit bestand —
+deze repo is publiek.
+
+Welke tag:
+- Een afspraak met precies één andere persoon krijgt de 1-op-1-meeting-tag,
+  met het team-member-veld gevuld met de bestaande #person-node van die
+  persoon. Bestaat die persoon nog niet als node, gebruik dan de gewone
+  meeting-tag en laat het veld leeg — maak nooit een nieuwe persoonsnode aan.
+- Alle andere afspraken krijgen de gewone meeting-tag.
+
+Vul per node:
+- de datum als tijdsbereik: `[[date:JJJJ-MM-DD uu:mm/JJJJ-MM-DD uu:mm]]`;
+- de Teams-joinlink uit de uitnodiging;
+- de agendalink: de `htmlLink` uit Google Calendar, waarbij je de spatie in de
+  `eid`-parameter vervangt door `%20` — anders is de link stuk;
+- een omschrijving met de organisator en de deelnemersnamen als platte tekst.
+  Zet deelnemers nooit als `[[referenties]]`: dat maakt tientallen lege
+  persoonsnodes aan.
+
+Staat er een echt doel of een vraag in de uitnodiging, zet die dan in het
+purpose-veld (gewone meeting) of het prep-veld (1-op-1). Botst de afspraak
+met een andere, zet dat als losse regel eronder.
+
+Werk idempotent: kijk eerst of er voor vandaag al meeting-nodes bestaan
+voordat je iets aanmaakt. William heeft een aparte Google Calendar
+Events-koppeling die zelf meetings aanmaakt onder Library — maak nooit een
+tweede node voor dezelfde afspraak.
+
+Zijn er geen echte afspraken vandaag, sla deze stap dan stil over.
+
+## Stap 10 — Node in de dagnotitie
 
 Zet in Williams dagelijkse journaal-structuur in Outliner (de calendar-node
 van vandaag) één node "Dagstart — <dag> <datum>" met daaronder: de link naar
@@ -263,7 +303,7 @@ Verwijs naar taken met `[[Naam^nodeId]]` zodat het echte referenties worden.
 Bestaat er al een Dagstart-node onder vandaag, werk die dan bij in plaats
 van een tweede toe te voegen.
 
-## Stap 10 — Pushbericht
+## Stap 11 — Pushbericht
 
 Stuur William een pushbericht van één zin met de kern van vandaag en de
 link naar de pagina.
