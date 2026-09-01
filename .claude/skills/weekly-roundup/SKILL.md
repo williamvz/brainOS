@@ -52,6 +52,11 @@ Kijk actief naar drie dingen: taken die al meer dan twee weken over datum
 zijn (verzetten, delegeren of schrappen), taken die dubbel of bijna dubbel
 in het systeem staan, en vage taken zonder werkwoord.
 
+Pas op bij dat tweede punt: een terugkerende taak laat bij elke afronding een
+afgevinkte kopie achter, dus dezelfde naam komt tientallen keren voor. Dat is
+historie, geen dubbele taak — meld het niet als opruimwerk. Zie
+`docs/outliner-taken.md` in deze repo.
+
 Link naar een taak als `https://app.tana.inc/?nodeid=<nodeId>`.
 
 ## Stap 4 — Areas met wekelijks ritme
