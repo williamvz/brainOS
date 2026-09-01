@@ -28,6 +28,14 @@ Bronnen: Google Calendar, Gmail, Notion en Tana (Outliner).
   doelen van het nieuwe jaar. Gestileerde pagina als Artifact, plus een
   regel in de jaarnotitie, een pushbericht én een e-mail.
 
+## Naslag
+
+- **[docs/outliner-taken.md](docs/outliner-taken.md)** — hoe `#task` en
+  `#recurring task` zich verhouden, hoe je een terugkerende taak afrondt
+  zonder hem definitief te sluiten, en de triage-zoekopdracht "Inbox" die
+  onaffe taken en projecten vangt. Gedeelde naslag voor `day-start` en
+  `weekly-roundup`.
+
 ## Over persoonlijke gegevens in deze repo
 
 Deze repo is publiek. Skills beschrijven de methode (welke bronnen, welke

@@ -42,6 +42,23 @@ Prioriteit, bovenliggende area/project, deadline en herhaling op te halen.
 Sorteer op prioriteit (P1–P4) en dan op hoe lang de deadline verlopen is.
 Link naar een taak als `https://app.tana.inc/?nodeid=<nodeId>`.
 
+Terugkerende taken gedragen zich anders dan gewone: elke afronding laat een
+afgevinkte kopie met de oude deadline achter, dus dezelfde naam staat vaak
+tientallen keren in de graph. Alleen de onafgevinkte is de levende taak — tel
+per naam één keer en laat de historie buiten de lijst. Hoe dat mechanisme
+precies werkt staat in `docs/outliner-taken.md` in deze repo; lees dat als je
+twijfelt over wat je ziet.
+
+**Triage.** Draai daarna de zoekopdracht *Inbox* — zoek hem live op als
+search-node met die naam, hardcodeer geen ID. Die zoekt geen open taken maar
+onaffe: vastgelegd, maar nog niet zo ingevuld dat ze gepland kunnen worden
+(geen area of project, geen prioriteit, geen deadline zonder dat ze someday
+zijn, of een terugkerende taak zonder `Occurrence`). Rapporteer de uitkomst
+als één regel met het aantal — nooit als lijst, dat is werk voor de
+weekafsluiting. Springt er iets uit dat vandaag echt een keuze vraagt — een
+terugkerende taak die niet meer doorrolt, of een stapel die boven de tien
+uitkomt — neem dat dan mee naar stap 4.
+
 ## Stap 4 — Beslissingen
 
 Dit is het belangrijkste blok en het vraagt oordeel, geen opsomming. Noem
@@ -223,6 +240,9 @@ hetzelfde aanvoelt:
 - Eén kolom, max-width 640px, mobiel eerst. Volgorde: kop → Vandaag (agenda)
   → Beslissingen → Open taken → Nieuws → Weer → Markten & portefeuille →
   voettekst met bronnen.
+- Onder Open taken sluit één regel in ink-faint de sectie af met de uitkomst
+  van de triage uit stap 3 (aantal onaffe taken en projecten). Is er niets
+  onaf, laat die regel dan weg.
 - Elke sectiekop heeft rechts een klein bronlabel in monospace: "Google
   Agenda", "Outliner", "NOS", "Buienradar", "Outliner + koersen".
 - De kop bestaat uit: een monospace regel met datum (en plaats, als de
