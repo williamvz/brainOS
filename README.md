@@ -5,7 +5,8 @@ William's persoonlijke Cowork skills.
 ## Skills
 
 Elke skill draait alleen op expliciet verzoek — geen automatische triggers.
-Bronnen: Google Calendar, Gmail, Notion en Tana (Outliner).
+Bronnen: Google Calendar, Gmail, Notion, Tana (Outliner) en — voor de
+energiebalans — de API's en portalen van de energie- en laadpaaldiensten.
 
 - **[day-start](.claude/skills/day-start/SKILL.md)** — de "Dagstart"
   ochtendbriefing: agenda, openstaande taken, beslissingen die vandaag om een
@@ -27,14 +28,23 @@ Bronnen: Google Calendar, Gmail, Notion en Tana (Outliner).
   terugblik op het jaar, Pastoors brainstormvragen, en de vragen voor de
   doelen van het nieuwe jaar. Gestileerde pagina als Artifact, plus een
   regel in de jaarnotitie, een pushbericht én een e-mail.
+- **[monthly-energy](.claude/skills/monthly-energy/SKILL.md)** — de
+  maandelijkse "Energiebalans": zonproductie, afname en kosten bij de
+  energieleverancier, de vergoeding voor het laden en de opbrengst van de
+  ERE-certificaten. Vult de maandtabel in Outliner, rondt de terugkerende taak
+  af, en meldt of de maand geld kostte of opleverde. Gestileerde pagina als
+  Artifact, plus een node in de maandnotitie en een pushbericht.
 
 ## Naslag
 
 - **[docs/outliner-taken.md](docs/outliner-taken.md)** — hoe `#task` en
   `#recurring task` zich verhouden, hoe je een terugkerende taak afrondt
-  zonder hem definitief te sluiten, en de triage-zoekopdracht "Inbox" die
-  onaffe taken en projecten vangt. Gedeelde naslag voor `day-start` en
-  `weekly-roundup`.
+  zonder hem definitief te sluiten — met de hand of vanuit een skill — en de
+  triage-zoekopdracht "Inbox" die onaffe taken en projecten vangt. Gedeelde
+  naslag voor `day-start`, `weekly-roundup` en `monthly-energy`.
+- **[docs/energie-bronnen.md](docs/energie-bronnen.md)** — de vier bronnen
+  achter `monthly-energy`: welke een API hebben en welke alleen een portaal,
+  wat elke bron oplevert, en waar het misgaat (netwerk, login, timing).
 
 ## Over persoonlijke gegevens in deze repo
 

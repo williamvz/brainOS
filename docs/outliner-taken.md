@@ -1,9 +1,10 @@
 # Taken in Outliner (Tana)
 
-Naslag bij de skills die taken lezen — `day-start` (stap 3) en
-`weekly-roundup` (stap 3). Beschrijft hoe `#task` en `#recurring task` zich
-tot elkaar verhouden, hoe een terugkerende taak wordt afgerond, en wat dat
-betekent voor elke zoekopdracht die taken ophaalt.
+Naslag bij de skills die taken lezen of afronden — `day-start` (stap 3),
+`weekly-roundup` (stap 3) en `monthly-energy` (stap 6). Beschrijft hoe `#task`
+en `#recurring task` zich tot elkaar verhouden, hoe een terugkerende taak wordt
+afgerond — met de hand én vanuit een skill — en wat dat betekent voor elke
+zoekopdracht die taken ophaalt.
 
 > **Over identifiers in dit bestand:** deze repo is publiek. Hieronder staan
 > alleen namen van tags, velden en commando's — nooit tag-, veld- of
@@ -49,6 +50,37 @@ gevuld, en de taak is nog niet afgevinkt. Mist er één, dan gebeurt er niets.
 `In seven days`, `In four weeks`, `In one month`, `In one year`. Een
 frequentie als `Every week` is géén relatieve datum — daar loopt stap 4 op
 stuk en valt de reeks stil.
+
+## Complete and reschedule nabootsen
+
+*Complete — Complete and reschedule* is een Tana-commando en zit niet in de
+MCP-koppeling. Een skill die een terugkerende taak wil afronden kan het dus
+niet aanroepen — en `check_node` op het origineel is precies het verkeerde:
+dat sluit de reeks definitief.
+
+De vier stappen zijn wel na te bootsen, want ze zijn deterministisch. Netto
+moet er hetzelfde staan als na het commando: een levend origineel met de
+volgende deadline, en een afgevinkte kopie met de oude.
+
+1. **Kopieer de taak** als sibling op dezelfde plek: dezelfde naam, dezelfde
+   recurring-tag, en dezelfde veldwaarden — inclusief de **oude**
+   `Deadline Date`. `import_tana_paste` koppelt velden op naam, dus je hebt
+   geen veld-ID's nodig.
+2. **Vink de kopie af** met `check_node`. Dat is de historie.
+3. **Schuif de deadline van het origineel vooruit**: reken `Occurrence` uit
+   met de oude `Deadline Date` als referentie (`In one month` op 31 augustus
+   wordt 30 september) en zet die met `set_field_content` op het origineel.
+4. **Laat het origineel onafgevinkt** en laat het taakstatusveld met rust —
+   het commando raakt dat ook niet aan.
+
+Lees daarna beide nodes terug en controleer dat het klopt: één afgevinkte
+kopie met de oude deadline, één levend origineel met de nieuwe.
+
+Twee dingen die je niet moet doen als het misgaat: een half aangemaakte kopie
+laten staan (ruim hem op), en het origineel alsnog afvinken "om het af te
+maken". Lukt de nabootsing niet, laat de taak dan gewoon open staan en zeg dat
+het commando er met de hand overheen moet. Een taak die nog open staat is een
+kleiner probleem dan een reeks die stilvalt.
 
 ## Wat dit betekent voor zoekopdrachten
 
