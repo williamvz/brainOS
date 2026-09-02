@@ -5,7 +5,7 @@ William's persoonlijke Cowork skills.
 ## Skills
 
 Elke skill draait alleen op expliciet verzoek — geen automatische triggers.
-Bronnen: Google Calendar, Gmail, Notion en Tana (Outliner).
+Bronnen: Google Calendar, Gmail, Notion, Tana (Outliner), n8n en Buffer.
 
 - **[day-start](.claude/skills/day-start/SKILL.md)** — de "Dagstart"
   ochtendbriefing: agenda, openstaande taken, beslissingen die vandaag om een
@@ -27,6 +27,11 @@ Bronnen: Google Calendar, Gmail, Notion en Tana (Outliner).
   terugblik op het jaar, Pastoors brainstormvragen, en de vragen voor de
   doelen van het nieuwe jaar. Gestileerde pagina als Artifact, plus een
   regel in de jaarnotitie, een pushbericht én een e-mail.
+- **[social-posts](.claude/skills/social-posts/SKILL.md)** — persoonlijke
+  posts voor LinkedIn en Bluesky. Outliner is het dossier (één `#social post`
+  per kanaal), Claude schrijft mee en is de koerier, en een n8n-flow plant de
+  goedgekeurde posts in bij Buffer en geeft de bon terug. William keurt goed;
+  zonder zijn akkoord gaat er niets de deur uit.
 
 ## Naslag
 
