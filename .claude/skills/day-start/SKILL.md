@@ -1,6 +1,6 @@
 ---
 name: day-start
-description: William's ochtendbriefing "Dagstart" — agenda uit Google Calendar, openstaande taken uit Outliner (Tana), keuzes die vandaag om een beslissing vragen, NOS-nieuws, Buienradar-weer, en beurzen + portefeuille. Levert een gestileerde pagina als Artifact, een regel in de dagnotitie, en een pushbericht. Alleen op expliciet verzoek (bv. "start mijn dag", "wat staat er vandaag", "goedemorgen", of /day-start) — niet automatisch.
+description: William's ochtendbriefing "Dagstart" — agenda uit Google Calendar, afspraken als meeting-nodes in Outliner (Tana) met een Meetings-index en agenda-voorstellen voor 1-op-1's en terugkerende meetings, openstaande taken, keuzes die vandaag om een beslissing vragen, NOS-nieuws, Buienradar-weer, en beurzen + portefeuille. Levert een gestileerde pagina als Artifact, een regel in de dagnotitie, en een pushbericht. Alleen op expliciet verzoek (bv. "start mijn dag", "wat staat er vandaag", "goedemorgen", of /day-start) — niet automatisch.
 ---
 
 # Dagstart
@@ -250,6 +250,10 @@ hetzelfde aanvoelt:
   benoemt zoals een vriend dat zou doen (de vorm van de dag, of het één
   ding dat hem bijzonder maakt — niet allebei); en één zin eronder die zegt
   wat er vandaag van hem gevraagd wordt.
+- Heeft een afspraak een agenda-voorstel gekregen, zet de punten dan compact
+  onder die agendaregel: hooguit drie, elk één regel, in ink-soft. Het
+  volledige voorstel staat in Outliner — de pagina toont alleen genoeg om
+  hem eraan te herinneren.
 - Een nieuwsitem is: links de publicatietijd (HH:MM) in bron-geel
   monospace, rechts de kop (Bricolage Grotesque, klikbaar naar de
   artikellink) met daaronder de samenvatting in Source Serif 4, kleur
@@ -275,7 +279,7 @@ goed nieuws.
 ## Stap 9 — Afspraken als meeting-nodes
 
 Zet elke echte afspraak van vandaag als losse node onder de calendar-node van
-vandaag, naast de Dagstart-node uit stap 10. Alleen afspraken met andere
+vandaag, naast de Dagstart-node uit stap 11. Alleen afspraken met andere
 mensen — sla blokken over die geen meeting zijn: schoolrit, focusblok, lunch,
 sport, reistijd. Bij twijfel: geen deelnemers of alleen jezelf is geen meeting.
 
@@ -308,9 +312,75 @@ voordat je iets aanmaakt. William heeft een aparte Google Calendar
 Events-koppeling die zelf meetings aanmaakt onder Library — maak nooit een
 tweede node voor dezelfde afspraak.
 
+Zet daarna één node "Meetings" onder de calendar-node van vandaag, met
+daaronder een referentie naar elke meeting-node van die dag, chronologisch en
+met de tijd ervoor: `08:30–09:30 — [[Titel^nodeId]]`. Dat is de index — de
+dagnode blijft leesbaar en één klik brengt hem in het gesprek zelf. Ook hier
+idempotent: bestaat die Meetings-node al, werk hem dan bij in plaats van een
+tweede toe te voegen.
+
 Zijn er geen echte afspraken vandaag, sla deze stap dan stil over.
 
-## Stap 10 — Node in de dagnotitie
+## Stap 10 — Agenda-voorstel voor 1-op-1's en terugkerende meetings
+
+Bij gesprekken die zich herhalen kun je vooraf zien wat er speelt. Stel daar
+een agenda voor — een vóórstel, geen besluit: het blijft Williams gesprek.
+
+**Voor welke gesprekken.** Elke 1-op-1 van vandaag, en elke terugkerende
+meeting waarvan je een eerdere instantie met dezelfde titel terugvindt. Niet
+voor eenmalige afspraken van iemand anders. Stuurde de organisator zelf al
+een agenda of doel mee, stel dan alleen voor wát William inbrengt — een
+vergadering van een ander is niet aan jou om in te delen.
+
+**Waar je het vandaan haalt**, in volgorde van sterkte:
+1. Openstaande items met de discuss-tag voor die persoon (het
+   team-member-veld). Oudere items hebben dat veld soms niet — match dan op
+   de voornaam in de titel. Zet erbij hoe lang het al wacht: iets van vier
+   maanden geleden is óf urgent óf dood, en dat verschil is zelf een
+   agendapunt.
+2. Openstaande action items uit de vorige instantie van hetzelfde gesprek.
+3. Taken die aan de ander gedelegeerd zijn, en taken uit de area of het
+   project van die persoon.
+4. Een doel-1-op-1 van die persoon — niet elke week, wel als er weken niets
+   over gezegd is of als er iets aan bewoog.
+5. Notitie-1-op-1-items van na het vorige gesprek.
+6. Mail: een thread met die persoon die nog op antwoord wacht. Alleen voor
+   1-op-1's, en alleen als er echt iets openstaat.
+7. De samenvatting van het vorige gesprek — wat bleef daar hangen.
+
+**Hoe je het samenstelt.** Dit is het deel dat oordeel vraagt:
+- Drie tot vijf punten, niet meer. Een half uur is een half uur.
+- Sorteer op wat het duurst is om over te slaan, niet op chronologie.
+- Eén regel per punt, met een referentie naar waar het vandaan komt. Geen
+  betoog: dit wordt twee minuten voor het gesprek gelezen.
+- Zet apart wat William van de ander wil en wat de ánder van hém wacht. Een
+  1-op-1 waarin alleen zijn eigen vragen staan is een statusupdate, geen
+  gesprek. Zoek dus actief naar wat bij hem ligt: taken die aan hem
+  gedelegeerd zijn, mail waar hij niet op antwoordde, een toezegging van
+  vorige keer.
+- Kijk naar de verhouding via het reporting-to-veld op de #person-node.
+  Rapporteert de ander aan William, dan hoort er periodiek iets in over hun
+  doelen en hoe het met ze gaat, niet alleen over lopende zaken. Rapporteert
+  William aan de ander, dan zijn het vooral beslissingen die hij nodig heeft
+  en dingen die hij moet melden. Zijn ze gelijken, dan gaat het over
+  afstemming.
+- Schrijf feiten en vragen, nooit een oordeel over de persoon. Dit gaat over
+  echte collega's, in een systeem dat hij kan delen.
+- Verzin nooit een punt dat je niet kunt herleiden. Vind je niets, schrijf
+  dan dat je niets vond — een leeg voorstel is eerlijker dan een gevuld.
+
+**Waar het landt.** Als kind van de meeting-node één node "Agenda-voorstel"
+met de punten eronder. Het prep-veld (1-op-1) en het agenda- of purpose-veld
+(gewone meeting) laat je met rust zodra er iets in staat — dat is van William
+zelf of van de organisator. Is zo'n veld leeg, dan mag je er één regel
+context in zetten, zoals stap 9 al beschrijft.
+
+**Houd het betaalbaar.** Op een dag met negen afspraken is dit anders te veel
+werk. Doe elke 1-op-1, en daarnaast hooguit de drie terugkerende meetings die
+er vandaag het meest toe doen. Voor de rest volstaat de meeting-node zonder
+voorstel.
+
+## Stap 11 — Node in de dagnotitie
 
 Zet in Williams dagelijkse journaal-structuur in Outliner (de calendar-node
 van vandaag) één node "Dagstart — <dag> <datum>" met daaronder: de link naar
@@ -323,7 +393,10 @@ Verwijs naar taken met `[[Naam^nodeId]]` zodat het echte referenties worden.
 Bestaat er al een Dagstart-node onder vandaag, werk die dan bij in plaats
 van een tweede toe te voegen.
 
-## Stap 11 — Pushbericht
+De meetings staan al onder de dagnode uit stap 9 — herhaal ze hier niet.
+Noem in de agendaregel hooguit welke gesprekken een agenda-voorstel kregen.
+
+## Stap 12 — Pushbericht
 
 Stuur William een pushbericht van één zin met de kern van vandaag en de
 link naar de pagina.
