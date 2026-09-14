@@ -295,7 +295,10 @@ Welke tag:
 - Alle andere afspraken krijgen de gewone meeting-tag.
 
 Vul per node:
-- de datum als tijdsbereik: `[[date:JJJJ-MM-DD uu:mm/JJJJ-MM-DD uu:mm]]`;
+- de datum als tijdsbereik in UTC, met een `Z` achter elke tijd:
+  `JJJJ-MM-DDTuu:mmZ/JJJJ-MM-DDTuu:mmZ`. Zet die met `set_field_content` op
+  het datumveld — niet als `[[date:...]]` in de tana-paste. Lees hieronder
+  waarom: dit is de enige vorm die in Tana op de juiste plek in de dag landt;
 - de Teams-joinlink uit de uitnodiging;
 - de agendalink: de `htmlLink` uit Google Calendar, waarbij je de spatie in de
   `eid`-parameter vervangt door `%20` — anders is de link stuk;
@@ -303,14 +306,64 @@ Vul per node:
   Zet deelnemers nooit als `[[referenties]]`: dat maakt tientallen lege
   persoonsnodes aan.
 
+**Tijdzone — de valkuil die zichzelf verbergt.** Een datumveld zonder
+tijdzone slaat Tana op als UTC. Schrijf je de Amsterdamse kloktijd rauw weg
+(`2026-09-14 11:00`), dan staat de afspraak in Tana twee uur te laat in de
+zomer en één uur in de winter. Het venijn zit in de controle: lees je het
+veld terug, dan geeft de MCP de opgeslagen wandklok terug zónder tijdzone —
+`11:00`, precies wat je wilde zien — terwijl de agendaweergave hem op 13:00
+zet. Teruglezen bevestigt de fout dus in plaats van hem te betrappen.
+
+Reken de tijd uit Google Calendar daarom altijd eerst om naar UTC en zet er
+`Z` achter:
+
+| Google Calendar (Europe/Amsterdam) | wat je wegschrijft |
+| --- | --- |
+| 11:00–11:45, zomertijd (UTC+2) | `2026-09-14T09:00Z/2026-09-14T09:45Z` |
+| 11:00–11:45, wintertijd (UTC+1) | `2026-11-16T10:00Z/2026-11-16T10:45Z` |
+
+Bepaal de offset per datum in plaats van hem vast te nemen — eind maart en
+eind oktober klopt een vaste twee uur niet meer. Google Calendar geeft de
+offset zelf al mee in `start.dateTime` (`2026-09-14T11:00:00+02:00`); reken
+daarmee, of laat bash het doen:
+
+```bash
+# Amsterdamse kloktijd -> UTC-instant
+date -u -d "@$(TZ=Europe/Amsterdam date -d '2026-09-14 11:00' +%s)" '+%Y-%m-%dT%H:%MZ'
+# 2026-09-14T09:00Z
+```
+
+Let op de omweg via `+%s`: `TZ=Europe/Amsterdam date -u -d '...'` lijkt
+hetzelfde te doen maar is het niet — `-u` zet ook het *parsen* op UTC, dus
+die vorm geeft de tijd onveranderd terug en je denkt dat je hebt omgerekend.
+
+Twee regels die hieruit volgen:
+- Controleer een tijd nooit door het datumveld terug te lezen. Dat geeft de
+  UTC-wandklok en niet wat William in zijn agenda ziet. Wil je echt
+  verifiëren, kijk dan in de agendaweergave van Tana zelf.
+- De Meetings-index en alle tijden in de briefing blijven gewoon Amsterdamse
+  tijd. Die haal je uit Google Calendar, nooit uit het Tana-datumveld — dan
+  kan de UTC-opslag er ook niet in lekken.
+
 Staat er een echt doel of een vraag in de uitnodiging, zet die dan in het
 purpose-veld (gewone meeting) of het prep-veld (1-op-1). Botst de afspraak
 met een andere, zet dat als losse regel eronder.
 
 Werk idempotent: kijk eerst of er voor vandaag al meeting-nodes bestaan
-voordat je iets aanmaakt. William heeft een aparte Google Calendar
-Events-koppeling die zelf meetings aanmaakt onder Library — maak nooit een
-tweede node voor dezelfde afspraak.
+voordat je iets aanmaakt. Zoek daarbij op titel door de hele workspace, niet
+alleen onder de dagnode — de tweede schrijver zet zijn nodes ergens anders
+neer, dus een controle die alleen naar de dagnode kijkt vindt nooit iets en
+meldt altijd "nog niets aanwezig".
+
+Houd er rekening mee dat je niet de enige schrijver bent. William heeft een
+aparte Google Calendar Events-koppeling die per afspraak zelf een node onder
+Library zet, mét datumveld, dus die verschijnt ook in de agendaweergave.
+Die koppeling synchroniseert later op de ochtend dan deze skill draait: als
+jij om 07:00 langskomt bestaat de node van vandaag meestal nog niet. Je kunt
+er dus niet op vertrouwen dat je hem vindt, en "gewoon even controleren" lost
+de dubbeling niet op. Vind je hem wél, hang je aanvullingen — purpose,
+agenda-voorstel, botsingen — dan onder die bestaande node en maak geen
+tweede.
 
 Zet daarna één node "Meetings" onder de calendar-node van vandaag, met
 daaronder een referentie naar elke meeting-node van die dag, chronologisch en
