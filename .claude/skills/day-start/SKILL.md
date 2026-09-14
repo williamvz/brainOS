@@ -1,6 +1,6 @@
 ---
 name: day-start
-description: William's ochtendbriefing "Dagstart" — agenda uit Google Calendar, afspraken als meeting-nodes in Outliner (Tana) met een Meetings-index en agenda-voorstellen voor 1-op-1's en terugkerende meetings, openstaande taken, keuzes die vandaag om een beslissing vragen, NOS-nieuws, Buienradar-weer, en beurzen + portefeuille. Levert een gestileerde pagina als Artifact, een regel in de dagnotitie, en een pushbericht. Alleen op expliciet verzoek (bv. "start mijn dag", "wat staat er vandaag", "goedemorgen", of /day-start) — niet automatisch.
+description: William's ochtendbriefing "Dagstart" — agenda uit Google Calendar, afspraken verrijkt op de bestaande agenda-nodes in Outliner (Tana) met een Meetings-index en agenda-voorstellen voor 1-op-1's en terugkerende meetings, openstaande taken, keuzes die vandaag om een beslissing vragen, NOS-nieuws, Buienradar-weer, en beurzen + portefeuille. Levert een gestileerde pagina als Artifact, een regel in de dagnotitie, en een pushbericht. Alleen op expliciet verzoek (bv. "start mijn dag", "wat staat er vandaag", "goedemorgen", of /day-start) — niet automatisch.
 ---
 
 # Dagstart
@@ -23,14 +23,25 @@ Bepaal eerst de datum en tijd in Europe/Amsterdam via bash
 
 ## Stap 2 — Agenda (Google Calendar)
 
-Haal de events van vandaag 00:00 t/m morgen 00:00 (Europe/Amsterdam) op uit de
-agenda's die van William zijn — doorgaans een privé-agenda, een werkagenda en
-een gezinsagenda. Gebruik `list_calendars` om ze te vinden in plaats van
-ID's hard te coderen. De werkagenda levert vaak elke afspraak dubbel aan;
-ontdubbel op titel plus starttijd voordat je verder werkt. Sorteer
-chronologisch, hele-dag-events bovenaan. Bewaar per event de `htmlLink`. Kijk
-ook even naar morgen: als er iets is dat vandaag voorbereiding vraagt, noem
-dat bij Beslissingen.
+Haal de events van vandaag 00:00 t/m overmorgen 00:00 (Europe/Amsterdam) op
+uit de agenda's die van William zijn — doorgaans een privé-agenda, een
+werkagenda en een gezinsagenda. Gebruik `list_calendars` om ze te vinden in
+plaats van ID's hard te coderen. De werkagenda levert vaak elke afspraak
+dubbel aan; ontdubbel op titel plus starttijd voordat je verder werkt.
+Sorteer chronologisch, hele-dag-events bovenaan. Bewaar per event de
+`htmlLink`.
+
+Je haalt dus twee dagen op, met elk hun eigen rol. **Vandaag** is de
+briefing: de pagina, de beslissingen, het pushbericht gaan over vandaag.
+**Morgen** gebruik je voor stap 9 — je zet de meetings van morgen alvast in
+Tana — en voor stap 4: staat er morgen iets dat vandaag voorbereiding of een
+afzegging vraagt, noem dat bij Beslissingen. Zet morgen verder niet in de
+briefing; het is vooruitkijken, geen tweede dagoverzicht.
+
+De agenda in Google is een kopie die maar één keer per dag ververst wordt.
+Hoe die keten loopt en wat dat betekent voor wat je ziet, staat in
+`docs/agenda-keten.md` — lees dat als een afspraak niet klopt met wat
+William zegt dat er staat.
 
 ## Stap 3 — Taken (Outliner / Tana)
 
@@ -109,9 +120,12 @@ met de komende vijf dagen. Staat er een waarschuwing in het weerbericht
 
 ## Stap 7 — Markten en portefeuille
 
-Om 06:35 zijn alle beurzen dicht. De AEX en de Europese ETF's staan op de
-slotkoers van de vorige handelsdag, de Amerikaanse indices en aandelen op de
-slotkoers van vannacht. Zeg dat er expliciet bij, met de datum van de stand.
+Om 06:00 zijn alle beurzen dicht. Euronext opent pas om 09:00 en Wall Street
+om 15:30, dus de AEX en de Europese ETF's staan op de slotkoers van de vorige
+handelsdag en de Amerikaanse indices en aandelen op de slotkoers van
+vannacht. Zeg dat er expliciet bij, met de datum van de stand — je toont
+nooit een live koers, altijd een slot.
+
 Is het weekend of een beursfeestdag, meld dan dat de beurs gesloten was en
 van welke dag de standen zijn; reken de portefeuille dan gewoon door, maar
 zeg erbij dat er sinds vrijdag niets veranderd is.
@@ -164,9 +178,10 @@ Koersen ophalen — in deze volgorde:
    Je krijgt `lastPrice`, `changeToPrevDayAbsolute`,
    `changeToPrevDayInPercent` en `timestampLastPrice`.
    **Controleer altijd `timestampLastPrice`.** Sommige fondsen worden op
-   Xetra nauwelijks verhandeld en geven een koers van weken terug. Is
-   `timestampLastPrice` niet van de laatste handelsdag, gooi die koers weg
-   en haal die ene positie op via stap 3.
+   Xetra nauwelijks verhandeld en geven een koers van weken terug. Om 06:00
+   is Xetra dicht, dus een goede koers draagt de datum van de laatste
+   handelsdag. Is `timestampLastPrice` ouder, gooi die koers dan weg en haal
+   die ene positie op via stap 3.
    Dit is de Xetra-notering; die kan een fractie van een procent afwijken
    van Amsterdam. Voor een ochtendbriefing is dat prima — zet in de
    voettekst welke bron je per positie gebruikt hebt als het er meer dan
@@ -276,58 +291,117 @@ Lege blokken: heeft de agenda niets, schrijf dan één rustige zin in plaats
 van een leeg kader. Zijn er geen open taken, zeg dat dan ook zo — dat is
 goed nieuws.
 
-## Stap 9 — Afspraken als meeting-nodes
+## Stap 9 — Afspraken: verrijk de bestaande agenda-nodes
 
-Zet elke echte afspraak van vandaag als losse node onder de calendar-node van
-vandaag, naast de Dagstart-node uit stap 11. Alleen afspraken met andere
-mensen — sla blokken over die geen meeting zijn: schoolrit, focusblok, lunch,
-sport, reistijd. Bij twijfel: geen deelnemers of alleen jezelf is geen meeting.
+**Doe deze stap voor twee dagen: vandaag én morgen.** Elke dag krijgt zijn
+eigen Meetings-index onder zijn eigen dagnode. Dat morgen meegaat is met
+opzet: om 06:00 bestaan de agenda-nodes van vandaag al — de koppeling maakte
+ze gisterochtend — terwijl die van morgen doorgaans pas later vandaag komen.
+Door morgen elke ochtend mee te nemen loopt de index nooit achter: wat je
+vandaag als platte regel moest laten staan, hangt morgenochtend alsnog aan
+zijn node.
 
-Zoek de juiste supertags en velden elke ochtend opnieuw op via `list_tags` en
-`get_tag_schema`. Hardcodeer geen tag-, veld- of node-ID's in dit bestand —
+Tana synchroniseert zelf met Google Calendar en maakt per afspraak een eigen
+node aan, met datumveld, deelnemers en de uitnodigingstekst. Díé node is
+leidend. Jouw werk is haar verrijken — nooit een tweede node ernaast zetten.
+Twee nodes voor dezelfde afspraak betekent twee blokken in de
+agendaweergave, en dat is precies wat we niet willen.
+
+**Maak dus zelf geen meeting-nodes aan.** Ook niet als je er geen kunt
+vinden; zie "Nog niet gesynchroniseerd" hieronder.
+
+Welke afspraken tellen: alleen die met andere mensen. Sla blokken over die
+geen meeting zijn — schoolrit, focusblok, lunch, sport, reistijd. Bij
+twijfel: geen deelnemers of alleen jezelf is geen meeting.
+
+**De agenda-node vinden.** Zoek per afspraak, van beide dagen, op titel door
+de hele workspace — niet alleen onder de dagnode, want de koppeling zet haar
+nodes ergens anders neer, doorgaans onder Library. Match op titel plus datum:
+titels herhalen zich wekelijks én je kijkt nu naar twee dagen tegelijk, dus
+een match zonder datumcontrole pakt de verkeerde dag of de verkeerde week.
+Zoek de supertags en velden elke ochtend opnieuw op via `list_tags` en
+`get_tag_schema` — hardcodeer geen tag-, veld- of node-ID's in dit bestand,
 deze repo is publiek.
 
-Welke tag:
-- Een afspraak met precies één andere persoon krijgt de 1-op-1-meeting-tag,
-  met het team-member-veld gevuld met de bestaande #person-node van die
-  persoon. Bestaat die persoon nog niet als node, gebruik dan de gewone
-  meeting-tag en laat het veld leeg — maak nooit een nieuwe persoonsnode aan.
-- Alle andere afspraken krijgen de gewone meeting-tag.
+**De tag.** De koppeling zet er meestal zelf de juiste supertag op: de gewone
+meeting-tag, of de 1-op-1-tag bij een gesprek met precies één ander. Staat er
+nog geen tag op, zet die er dan op — een afspraak met precies één andere
+persoon krijgt de 1-op-1-tag, de rest de gewone meeting-tag. Vul bij een
+1-op-1 het team-member-veld alleen als die persoon al als #person-node
+bestaat; maak er nooit een nieuwe voor aan. Een tag die er al staat laat je
+staan, ook als jij een andere had gekozen.
 
-Vul per node:
-- de datum als tijdsbereik: `[[date:JJJJ-MM-DD uu:mm/JJJJ-MM-DD uu:mm]]`;
-- de Teams-joinlink uit de uitnodiging;
-- de agendalink: de `htmlLink` uit Google Calendar, waarbij je de spatie in de
-  `eid`-parameter vervangt door `%20` — anders is de link stuk;
-- een omschrijving met de organisator en de deelnemersnamen als platte tekst.
-  Zet deelnemers nooit als `[[referenties]]`: dat maakt tientallen lege
-  persoonsnodes aan.
+**Wat je toevoegt.** Alleen wat de koppeling zelf niet levert:
+- staat er een echt doel of een vraag in de uitnodiging, zet die dan in het
+  purpose-veld (gewone meeting) of het prep-veld (1-op-1) — maar alleen zolang
+  dat veld nog leeg is;
+- botst de afspraak met een andere, zet dat als losse regel eronder;
+- het agenda-voorstel uit stap 10, als kind van de node.
 
-Staat er een echt doel of een vraag in de uitnodiging, zet die dan in het
-purpose-veld (gewone meeting) of het prep-veld (1-op-1). Botst de afspraak
-met een andere, zet dat als losse regel eronder.
+**Wat je met rust laat.** Het datumveld, de omschrijving, de deelnemers en de
+event-status zijn van de koppeling. Overschrijf ze niet, ook niet als ze
+lelijk of onvolledig zijn. Dat geldt dubbel voor het datumveld — zie de
+waarschuwing onderaan deze stap.
 
-Werk idempotent: kijk eerst of er voor vandaag al meeting-nodes bestaan
-voordat je iets aanmaakt. William heeft een aparte Google Calendar
-Events-koppeling die zelf meetings aanmaakt onder Library — maak nooit een
-tweede node voor dezelfde afspraak.
+**Nog niet gesynchroniseerd.** Voor vandaag horen de agenda-nodes er om 06:00
+te zijn; voor morgen vaak nog niet. Twee soorten afspraken krijgen sowieso
+nooit een node: die zonder Teams-link — een fysieke afspraak, een rechtbank,
+een blok in Amsterdam — lijkt de koppeling over te slaan. Ontbreekt de node,
+maak er dan géén. Zet die afspraak in de Meetings-index als platte regel
+zonder referentie en hang een eventueel agenda-voorstel daaronder. Morgen
+draai je opnieuw en leg je de referentie alsnog, als hij er dan wél is.
 
-Zet daarna één node "Meetings" onder de calendar-node van vandaag, met
-daaronder een referentie naar elke meeting-node van die dag, chronologisch en
-met de tijd ervoor: `08:30–09:30 — [[Titel^nodeId]]`. Dat is de index — de
-dagnode blijft leesbaar en één klik brengt hem in het gesprek zelf. Ook hier
-idempotent: bestaat die Meetings-node al, werk hem dan bij in plaats van een
-tweede toe te voegen.
+**De Meetings-index.** Zet per dag één node "Meetings" onder de calendar-node
+van die dag — dus één onder vandaag en één onder morgen — met daaronder per
+afspraak één regel, chronologisch, met de tijd ervoor:
+`08:30–09:30 — [[Titel^nodeId]]` als de agenda-node bestaat, anders
+`08:30–09:30 — Titel`. Die tijden komen uit Google Calendar en staan dus in
+Amsterdamse tijd. Dat is de index — de dagnode blijft leesbaar en één klik
+brengt William in het gesprek zelf. Werk idempotent: bestaat de
+Meetings-node al, werk hem dan bij in plaats van een tweede toe te voegen.
 
-Zijn er geen echte afspraken vandaag, sla deze stap dan stil over.
+Heeft een dag geen echte afspraken, sla die dag dan stil over — geen lege
+Meetings-node. Zijn beide dagen leeg, sla de hele stap over.
+
+**Waarschuwing: het datumveld en tijdzones.** Je schrijft dit veld niet meer,
+en dat is maar goed ook. Tana slaat een datumveld zónder tijdzone op als UTC.
+Schreef je de Amsterdamse kloktijd rauw weg (`2026-09-14 11:00`), dan stond
+de afspraak twee uur te laat in de agendaweergave — in de winter één uur. Die
+fout verborg zichzelf: bij teruglezen geeft de MCP de opgeslagen wandklok
+terug zónder tijdzone, precies de tijd die je bedoelde, terwijl de weergave
+verschoven was. Teruglezen bevestigde de fout dus in plaats van hem te
+betrappen.
+
+Moet je ooit tóch een datum schrijven, doe het dan als expliciet UTC-bereik
+met `Z`, via `set_field_content`:
+
+```bash
+# Amsterdamse kloktijd -> UTC-instant
+date -u -d "@$(TZ=Europe/Amsterdam date -d '2026-09-14 11:00' +%s)" '+%Y-%m-%dT%H:%MZ'
+# 2026-09-14T09:00Z
+```
+
+Let op de omweg via `+%s`: `TZ=Europe/Amsterdam date -u -d '...'` lijkt
+hetzelfde te doen maar is het niet — `-u` zet ook het *parsen* op UTC, dus
+die vorm geeft de tijd onveranderd terug en je denkt dat je hebt omgerekend.
+Reken de offset bovendien per datum uit; eind maart en eind oktober klopt een
+vaste twee uur niet meer.
+
+En controleer een tijd nooit door het datumveld terug te lezen — dat geeft de
+UTC-wandklok, niet wat William in zijn agenda ziet. Alle tijden in de
+briefing en in de index haal je uit Google Calendar, nooit uit het
+Tana-datumveld.
 
 ## Stap 10 — Agenda-voorstel voor 1-op-1's en terugkerende meetings
 
 Bij gesprekken die zich herhalen kun je vooraf zien wat er speelt. Stel daar
 een agenda voor — een vóórstel, geen besluit: het blijft Williams gesprek.
 
-**Voor welke gesprekken.** Elke 1-op-1 van vandaag, en elke terugkerende
-meeting waarvan je een eerdere instantie met dezelfde titel terugvindt. Niet
+**Voor welke gesprekken.** Alleen die van vandaag — stap 9 zet morgen wel
+alvast in de index, maar een agenda-voorstel maak je pas op de ochtend zelf,
+als je de verse stand van taken en mail hebt. Dus: elke 1-op-1 van vandaag,
+en elke terugkerende meeting waarvan je een eerdere instantie met dezelfde
+titel terugvindt. Niet
 voor eenmalige afspraken van iemand anders. Stuurde de organisator zelf al
 een agenda of doel mee, stel dan alleen voor wát William inbrengt — een
 vergadering van een ander is niet aan jou om in te delen.
@@ -369,16 +443,18 @@ vergadering van een ander is niet aan jou om in te delen.
 - Verzin nooit een punt dat je niet kunt herleiden. Vind je niets, schrijf
   dan dat je niets vond — een leeg voorstel is eerlijker dan een gevuld.
 
-**Waar het landt.** Als kind van de meeting-node één node "Agenda-voorstel"
-met de punten eronder. Het prep-veld (1-op-1) en het agenda- of purpose-veld
-(gewone meeting) laat je met rust zodra er iets in staat — dat is van William
-zelf of van de organisator. Is zo'n veld leeg, dan mag je er één regel
-context in zetten, zoals stap 9 al beschrijft.
+**Waar het landt.** Als kind van de agenda-node één node "Agenda-voorstel"
+met de punten eronder. Bestaat die agenda-node nog niet — de koppeling loopt
+achter op de Dagstart — hang het voorstel dan onder de regel in de
+Meetings-index, en maak er geen meeting-node voor aan. Het prep-veld (1-op-1)
+en het agenda- of purpose-veld (gewone meeting) laat je met rust zodra er
+iets in staat: dat is van William zelf of van de organisator. Is zo'n veld
+leeg, dan mag je er één regel context in zetten, zoals stap 9 beschrijft.
 
 **Houd het betaalbaar.** Op een dag met negen afspraken is dit anders te veel
 werk. Doe elke 1-op-1, en daarnaast hooguit de drie terugkerende meetings die
-er vandaag het meest toe doen. Voor de rest volstaat de meeting-node zonder
-voorstel.
+er vandaag het meest toe doen. Voor de rest volstaat de regel in de
+Meetings-index zonder voorstel.
 
 ## Stap 11 — Node in de dagnotitie
 
@@ -393,7 +469,7 @@ Verwijs naar taken met `[[Naam^nodeId]]` zodat het echte referenties worden.
 Bestaat er al een Dagstart-node onder vandaag, werk die dan bij in plaats
 van een tweede toe te voegen.
 
-De meetings staan al onder de dagnode uit stap 9 — herhaal ze hier niet.
+De meetings staan al in de Meetings-index uit stap 9 — herhaal ze hier niet.
 Noem in de agendaregel hooguit welke gesprekken een agenda-voorstel kregen.
 
 ## Stap 12 — Pushbericht
