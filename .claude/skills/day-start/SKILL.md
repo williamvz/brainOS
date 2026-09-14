@@ -109,9 +109,18 @@ met de komende vijf dagen. Staat er een waarschuwing in het weerbericht
 
 ## Stap 7 — Markten en portefeuille
 
-Om 06:35 zijn alle beurzen dicht. De AEX en de Europese ETF's staan op de
-slotkoers van de vorige handelsdag, de Amerikaanse indices en aandelen op de
-slotkoers van vannacht. Zeg dat er expliciet bij, met de datum van de stand.
+Om 09:15 is Europa net open en Amerika nog dicht. Euronext en Xetra handelen
+sinds 09:00, dus de AEX, de DAX en de Europese ETF's geven een live koers van
+een kwartier oud — een stand, geen slotkoers. De Amerikaanse indices en
+aandelen staan op het slot van gisteravond (Wall Street opent pas om 15:30)
+en Tokio is alweer dicht. Zeg per blok expliciet wat je laat zien: "stand
+09:15" voor Europa, "slot" plus de datum voor Amerika. Zet nooit een live
+stand en een slotkoers onder dezelfde noemer.
+
+De eerste minuten na de opening zijn onrustig en een dagmutatie van een paar
+tienden zegt dan weinig. Schrijf de stand op zonder hem groter te maken dan
+hij is.
+
 Is het weekend of een beursfeestdag, meld dan dat de beurs gesloten was en
 van welke dag de standen zijn; reken de portefeuille dan gewoon door, maar
 zeg erbij dat er sinds vrijdag niets veranderd is.
@@ -164,9 +173,11 @@ Koersen ophalen — in deze volgorde:
    Je krijgt `lastPrice`, `changeToPrevDayAbsolute`,
    `changeToPrevDayInPercent` en `timestampLastPrice`.
    **Controleer altijd `timestampLastPrice`.** Sommige fondsen worden op
-   Xetra nauwelijks verhandeld en geven een koers van weken terug. Is
-   `timestampLastPrice` niet van de laatste handelsdag, gooi die koers weg
-   en haal die ene positie op via stap 3.
+   Xetra nauwelijks verhandeld en geven een koers van weken terug. Om 09:15
+   handelt Xetra al, dus een verse koers draagt de datum van vandaag. Is
+   `timestampLastPrice` niet van vandaag — of, in het weekend, niet van de
+   laatste handelsdag — gooi die koers dan weg en haal die ene positie op
+   via stap 3.
    Dit is de Xetra-notering; die kan een fractie van een procent afwijken
    van Amsterdam. Voor een ochtendbriefing is dat prima — zet in de
    voettekst welke bron je per positie gebruikt hebt als het er meer dan
@@ -311,12 +322,13 @@ event-status zijn van de koppeling. Overschrijf ze niet, ook niet als ze
 lelijk of onvolledig zijn. Dat geldt dubbel voor het datumveld — zie de
 waarschuwing onderaan deze stap.
 
-**Nog niet gesynchroniseerd.** De koppeling loopt meestal ná de Dagstart: zij
-synchroniseert ergens tussen 08:00 en 12:00, jij draait rond 07:00. Voor een
-deel van de afspraken bestaat de agenda-node dus nog niet als jij langskomt.
-Maak er dan géén. Zet die afspraak in de Meetings-index als platte regel
-zonder referentie en hang een eventueel agenda-voorstel daaronder. Draai je
-later op de dag nog een keer, dan leg je de referentie alsnog.
+**Nog niet gesynchroniseerd.** De Dagstart draait om 09:15, juist omdat de
+koppeling dan meestal al langs is geweest. Meestal, niet altijd: haar
+synchronisatie is waargenomen tussen 09:00 en 13:30, dus voor een deel van de
+afspraken kan de agenda-node nog ontbreken als jij langskomt. Maak er dan
+géén. Zet die afspraak in de Meetings-index als platte regel zonder
+referentie en hang een eventueel agenda-voorstel daaronder. Draai je later op
+de dag nog een keer, dan leg je de referentie alsnog.
 
 **De Meetings-index.** Zet één node "Meetings" onder de calendar-node van
 vandaag, met daaronder per afspraak één regel, chronologisch, met de tijd
