@@ -451,7 +451,9 @@ vergadering van een ander is niet aan jou om in te delen.
    de voornaam in de titel. Zet erbij hoe lang het al wacht: iets van vier
    maanden geleden is óf urgent óf dood, en dat verschil is zelf een
    agendapunt.
-2. Openstaande action items uit de vorige instantie van hetzelfde gesprek.
+2. **Het vorige gesprek zelf** — zie het blok hieronder. Bij een terugkerende
+   1-op-1 is dit de rijkste bron die er is, en tegelijk de makkelijkste om
+   over het hoofd te zien.
 3. Taken die aan de ander gedelegeerd zijn, en taken uit de area of het
    project van die persoon.
 4. Een doel-1-op-1 van die persoon — niet elke week, wel als er weken niets
@@ -459,7 +461,47 @@ vergadering van een ander is niet aan jou om in te delen.
 5. Notitie-1-op-1-items van na het vorige gesprek.
 6. Mail: een thread met die persoon die nog op antwoord wacht. Alleen voor
    1-op-1's, en alleen als er echt iets openstaat.
-7. De samenvatting van het vorige gesprek — wat bleef daar hangen.
+
+**Het vorige gesprek uitlezen.** Bij een terugkerende 1-op-1 zit het beste
+materiaal in de vorige instantie: wat er gezegd is, wat er toegezegd is en wat
+er is blijven liggen. Een afgeronde 1-op-1-node draagt dat allemaal al.
+
+*Vind hem op de persoon, niet op de titel.* Hetzelfde gesprek heet door de
+jaren heen "1-1 with Jamie", "1-1 Jamie", "1-1 Jamie & William", "Catch up
+Jamie x William" en zelfs "William & Jaime". Zoeken op titel mist dus de helft
+van de historie. Zoek op de 1-op-1-tag met het team-member-veld gevuld met de
+#person-node van die persoon, en pak de laatste instantie vóór vandaag. Pas
+als dat niets oplevert val je terug op de voornaam in de titel.
+
+*Wat je eruit haalt*, in deze volgorde:
+- `Summary` — de sectie met open of follow-up-punten en die met besluiten.
+  Dat is letterlijk de overdracht van het vorige gesprek.
+- `Action items` — wie wat zou doen. Kijk per item of het inmiddels is
+  afgevinkt. Een toezegging die twee gesprekken later nog openstaat is het
+  sterkste agendapunt dat bestaat.
+- `Meeting Items` — de onderwerpen die op tafel lagen; terugkerende thema's
+  zie je hier het eerst.
+- `Transcript` — alleen als de samenvatting dun is. Citeer kort en letterlijk,
+  ga niet de opname navertellen.
+
+De punten in die velden dragen vaak al een referentie naar het citaat waar ze
+vandaan komen. Neem die mee in je voorstel, dan is William in één klik terug
+bij wat er precies gezegd is.
+
+*Hoe je het vertaalt naar een agendapunt.* Niet door de samenvatting te
+herhalen — dat leest hij zelf wel terug. Een goed punt benoemt wat er is
+blijven liggen en wat er sindsdien mee gebeurd is: "je zou X doen, dat staat
+nog open" of "hij vroeg in juni om Y, daar is daarna niets over gezegd". Is er
+aantoonbaar niets bewogen sinds het vorige gesprek, zeg dat dan — dat is zelf
+het onderwerp.
+
+*Wees voorzichtig met wat iemand over zichzelf zei.* In deze transcripten
+staan ook persoonlijke dingen: iemand die aangeeft het zwaar te hebben, aan
+zijn rol twijfelt of zich niet gesteund voelt. Dat is geen statusregel en geen
+afvinkpunt. Zet het als een vraag — "vraag hoe het nu gaat; in februari gaf
+hij aan overbelast te zijn en om wekelijkse 1-op-1's te vragen" — en zet het
+letterlijke citaat niet prominent in beeld. Bij twijfel: noem het thema, niet
+de woorden.
 
 **Hoe je het samenstelt.** Dit is het deel dat oordeel vraagt:
 - Drie tot vijf punten, niet meer. Een half uur is een half uur.
@@ -494,6 +536,12 @@ leeg, dan mag je er één regel context in zetten, zoals stap 9 beschrijft.
 werk. Doe elke 1-op-1, en daarnaast hooguit de drie terugkerende meetings die
 er vandaag het meest toe doen. Voor de rest volstaat de regel in de
 Meetings-index zonder voorstel.
+
+Het vorige gesprek uitlezen hoort bij het budget van een 1-op-1: één vorige
+instantie per gesprek, niet de hele reeks. Alleen als die ene te dun is —
+geen samenvatting, geen action items — loont het om één stap verder terug te
+kijken. Bij een terugkerende meeting die géén 1-op-1 is doe je dit niet: daar
+volstaan de openstaande items.
 
 ## Stap 11 — Node in de dagnotitie
 
