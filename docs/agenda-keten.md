@@ -13,7 +13,7 @@ september 2026.
 | Wie | Wanneer | Wat |
 | --- | --- | --- |
 | iOS-automatisering op Williams telefoon | 05:00, dagelijks | kopieert de afspraken van **morgen** uit Outlook naar Google Calendar |
-| Tana's Google Calendar-koppeling | rond 09:00 | maakt per afspraak een node onder Library → Google Calendar Events, voor **vandaag en morgen** |
+| Tana's Google Calendar-koppeling | tussen 08:00 en 11:00, niet elke dag | maakt per afspraak een node onder Library → Google Calendar Events, voor **vandaag en morgen** |
 | Dagstart | 06:00 | leest Google Calendar, verrijkt die nodes en bouwt de Meetings-index, voor **vandaag en morgen** |
 
 ## Wat daaruit volgt
@@ -28,18 +28,31 @@ oorzaak. Een frequentere sync (bijvoorbeeld elk uur) zou dit oplossen; dat
 staat geparkeerd als toekomstig klusje.
 
 **Om 06:00 bestaan de nodes van vandaag al, die van morgen meestal niet.**
-De koppeling draait rond 09:00 en pakt dan vandaag én morgen mee. De nodes
+De koppeling draait in de ochtend en pakt dan vandaag én morgen mee. De nodes
 voor vandaag zijn dus gisterochtend gemaakt en staan er ruim op tijd; die
 voor morgen komen pas ná de Dagstart. Daarom doet stap 9 beide dagen: wat
 vandaag nog een platte regel in de index moest blijven, hangt morgenochtend
 alsnog aan zijn node.
 
-**Fysieke afspraken krijgen geen node.** Alles wat een Teams-link heeft
-verschijnt als node; afspraken zonder online-link lijken te worden
-overgeslagen — waargenomen bij een zitting in Rotterdam en een dag op
-kantoor in Amsterdam, allebei met deelnemers en allebei zonder node. De
-terugvalregel in stap 9 (platte regel in de index, geen eigen node maken) is
-dus geen randgeval maar dagelijkse kost.
+**Maar de koppeling slaat dagen over.** Tussen 14 en 16 september draaide zij
+niet, en toen zij op de 16e om 10:26 alsnog liep, waren beide Dagstarts die
+naar die dag keken (op de 15e en de 16e om 06:00) al geweest. De hele index
+van 16 september bleef daardoor plat terwijl de nodes gewoon bestonden. Twee
+dagen vooruitkijken is dus niet genoeg: stap 9 loopt daarom ook gisteren en
+eergisteren na en vervangt platte regels alsnog door referenties.
+
+**Elke afspraak krijgt een node, maar lang niet elke node een tag.** De
+koppeling maakt voor alles wat in de agenda staat een node aan — ook voor
+lunch, focusblokken en de schoolrit. De supertag komt daar los achteraan en
+blijft vaak uit: op 17 september hadden alle zeven afspraken een node,
+waarvan er drie getagd waren en vier niet. Er zit geen patroon in; het is
+geen kwestie van wel of geen Teams-link.
+
+Dat maakt de tag onbruikbaar als zoeksleutel. Zoek een agenda-node altijd op
+datum (en dan op titel), nooit op tag, en lees de datum uit het datumveld in
+plaats van uit de naam — alleen getagde nodes dragen hun datum in de naam.
+Stap 9 beschrijft de werkwijze. Wie hier de tag als filter gebruikt, mist
+stelselmatig de helft van de dag zonder dat er iets kapot lijkt.
 
 **Twee schrijvers maken twee blokken.** Zowel de koppeling als de Dagstart
 kan een node met een datumveld maken, en alles met een datumveld verschijnt

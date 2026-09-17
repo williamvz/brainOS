@@ -314,18 +314,46 @@ Welke afspraken tellen: alleen die met andere mensen. Sla blokken over die
 geen meeting zijn — schoolrit, focusblok, lunch, sport, reistijd. Bij
 twijfel: geen deelnemers of alleen jezelf is geen meeting.
 
-**De agenda-node vinden.** Zoek per afspraak, van beide dagen, op titel door
-de hele workspace — niet alleen onder de dagnode, want de koppeling zet haar
-nodes ergens anders neer, doorgaans onder Library. Match op titel plus datum:
-titels herhalen zich wekelijks én je kijkt nu naar twee dagen tegelijk, dus
-een match zonder datumcontrole pakt de verkeerde dag of de verkeerde week.
+**De agenda-node vinden.** Begin bij de datum, niet bij de tag en niet bij de
+titel. Vraag per dag alles op wat op die datum staat:
+
+```
+{"and": [{"onDate": {"date": "JJJJ-MM-DD", "overlaps": true}}, {"has": "field"}]}
+```
+
+Dat geeft de datumvelden van álle agenda-nodes van die dag, met in het
+breadcrumb de titel van de afspraak waar ze bij horen. Zo zie je in één
+oogopslag welke afspraken een node hebben — ongeacht of er een tag op staat.
+Haal daarna per titel het node-ID op met een zoekopdracht op een kenmerkend
+stuk van de titel.
+
+**Twee valkuilen die je hier stil de das omdoen.** Ze hebben allebei tot
+17 september gezorgd dat afspraken als platte regel bleven staan terwijl hun
+node gewoon bestond:
+
+- *Zoek nooit op tag.* De koppeling maakt élke afspraak aan, maar tagt er maar
+  een deel van — de classificatie loopt achter en slaat er willekeurig een
+  paar over. Op 17 september hadden alle zeven afspraken een node; drie waren
+  getagd, vier niet, en precies die vier misten. Tag is dus een eigenschap van
+  de node, nooit een zoeksleutel.
+- *Verwacht de datum niet in de naam.* Een getagde node rendert als
+  `Titel| Today, 08:00 → 09:00`, een ongetagde als kale `Titel`. Match je op
+  "titel plus datum in de naam", dan vind je per definitie alleen de getagde.
+  Controleer de datum door het datumveld te lezen, niet de naam.
+
+Zoek bovendien op een kenmerkend fragment en zet de limiet ruim. Titels die
+beginnen met `1-1` of vol leestekens staan (`&`, `/`, haakjes) worden slecht
+getokeniseerd: `1-1 Jamie & William` levert rommel op, `mid year review` met
+limiet 40 vindt hem wel. Vind je een node niet, probeer dan een ander
+fragment vóór je concludeert dat hij niet bestaat.
+
 Zoek de supertags en velden elke ochtend opnieuw op via `list_tags` en
 `get_tag_schema` — hardcodeer geen tag-, veld- of node-ID's in dit bestand,
 deze repo is publiek.
 
-**De tag.** De koppeling zet er meestal zelf de juiste supertag op: de gewone
-meeting-tag, of de 1-op-1-tag bij een gesprek met precies één ander. Staat er
-nog geen tag op, zet die er dan op — een afspraak met precies één andere
+**De tag.** De koppeling zet er soms zelf een supertag op: de gewone
+meeting-tag, of de 1-op-1-tag bij een gesprek met precies één ander. Vaker
+staat er niets op. Zet hem er dan op — een afspraak met precies één andere
 persoon krijgt de 1-op-1-tag, de rest de gewone meeting-tag. Vul bij een
 1-op-1 het team-member-veld alleen als die persoon al als #person-node
 bestaat; maak er nooit een nieuwe voor aan. Een tag die er al staat laat je
@@ -343,13 +371,24 @@ event-status zijn van de koppeling. Overschrijf ze niet, ook niet als ze
 lelijk of onvolledig zijn. Dat geldt dubbel voor het datumveld — zie de
 waarschuwing onderaan deze stap.
 
-**Nog niet gesynchroniseerd.** Voor vandaag horen de agenda-nodes er om 06:00
-te zijn; voor morgen vaak nog niet. Twee soorten afspraken krijgen sowieso
-nooit een node: die zonder Teams-link — een fysieke afspraak, een rechtbank,
-een blok in Amsterdam — lijkt de koppeling over te slaan. Ontbreekt de node,
-maak er dan géén. Zet die afspraak in de Meetings-index als platte regel
-zonder referentie en hang een eventueel agenda-voorstel daaronder. Morgen
-draai je opnieuw en leg je de referentie alsnog, als hij er dan wél is.
+**Nog niet gesynchroniseerd.** De koppeling maakt voor élke afspraak een node
+— ook voor lunch, focusblokken en de schoolrit, dus het ontbreken van een
+Teams-link zegt niets. Wat wél telt is haar tijdstip: zij draait ergens
+tussen 08:00 en 11:00, en dus ná jou. De nodes van vandaag staan er daarom al
+(gisterochtend gemaakt), die van morgen meestal nog niet. Ontbreekt er een,
+maak er dan géén. Zet die afspraak als platte regel zonder referentie in de
+index en hang een eventueel agenda-voorstel daaronder.
+
+**Haal de vorige dagen bij.** Een platte regel die blijft staan wordt nooit
+meer een referentie, want die dag komt niet terug in je venster — zo bleef de
+hele index van 16 september plat terwijl de nodes er om 10:26 gewoon kwamen.
+Loop daarom aan het begin van deze stap de Meetings-index van **gisteren en
+eergisteren** langs. Staat daar nog een platte regel, zoek de node dan
+opnieuw op (dezelfde datum-eerst-methode) en vervang de regel alsnog door een
+referentie; tag hem als hij nog ongetagd is, en verhuis een agenda-voorstel
+dat er nog los onder hangt mee naar de node. Vind je hem nog steeds niet,
+laat de regel dan met rust. Dit kost hooguit twee zoekopdrachten en houdt de
+index op termijn volledig.
 
 **De Meetings-index.** Zet per dag één node "Meetings" onder de calendar-node
 van die dag — dus één onder vandaag en één onder morgen — met daaronder per
