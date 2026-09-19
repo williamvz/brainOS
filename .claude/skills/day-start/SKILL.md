@@ -383,12 +383,30 @@ index en hang een eventueel agenda-voorstel daaronder.
 meer een referentie, want die dag komt niet terug in je venster — zo bleef de
 hele index van 16 september plat terwijl de nodes er om 10:26 gewoon kwamen.
 Loop daarom aan het begin van deze stap de Meetings-index van **gisteren en
-eergisteren** langs. Staat daar nog een platte regel, zoek de node dan
-opnieuw op (dezelfde datum-eerst-methode) en vervang de regel alsnog door een
-referentie; tag hem als hij nog ongetagd is, en verhuis een agenda-voorstel
-dat er nog los onder hangt mee naar de node. Vind je hem nog steeds niet,
-laat de regel dan met rust. Dit kost hooguit twee zoekopdrachten en houdt de
-index op termijn volledig.
+eergisteren** langs.
+
+Doe dat per dag met **één** onDate-query, precies zoals hierboven beschreven:
+
+```
+{"and": [{"onDate": {"date": "JJJJ-MM-DD", "overlaps": true}}, {"has": "field"}]}
+```
+
+Die ene call geeft je alle agenda-nodes van die dag met hun titel in het
+breadcrumb. Leg dat naast de platte regels in de index en je weet meteen
+welke er een node hebben. Pas daarna zoek je per gevonden titel het node-ID
+op.
+
+**Ga hier niet per regel titels zitten zoeken.** Dat is precies waar het op
+18 september misging: de terugkijkstap viel terug op zoeken per titel, vond
+vier van de negen, en noteerde voor de rest dat de node "niet met zekerheid
+terug te vinden" was. Alle negen hádden een node — één onDate-query liet ze
+alle negen zien. Schrijf dus nooit op dat een node onvindbaar is zonder dat
+die query voor die dag leeg was op die titel.
+
+Vervang de regel door een referentie, tag de node als hij nog ongetagd is, en
+verhuis een agenda-voorstel dat er nog los onder hangt mee naar de node.
+Ontbreekt een titel echt in de onDate-uitkomst, laat de regel dan plat en
+zeg erbij dat de koppeling die afspraak niet heeft aangemaakt.
 
 **De Meetings-index.** Zet per dag één node "Meetings" onder de calendar-node
 van die dag — dus één onder vandaag en één onder morgen — met daaronder per
@@ -398,6 +416,16 @@ afspraak één regel, chronologisch, met de tijd ervoor:
 Amsterdamse tijd. Dat is de index — de dagnode blijft leesbaar en één klik
 brengt William in het gesprek zelf. Werk idempotent: bestaat de
 Meetings-node al, werk hem dan bij in plaats van een tweede toe te voegen.
+
+**Chronologisch blijft chronologisch.** Vervang je bij het bijwerken een
+regel, dan hoort de nieuwe op de plek van de oude — niet onderaan. Een
+tana-paste-import zet nieuwe regels altijd achteraan, dus na een
+terugkijkronde staat de index door elkaar: dat gebeurde op 18 september met
+de index van de 16e, waar vier bijgewerkte regels onder de statusregel
+belandden. Bouw daarom bij meer dan één vervanging de hele lijst opnieuw op
+in volgorde en gooi de oude regels weg, in plaats van los te vervangen. Staat
+er een statusregel over de bijwerking, zet die dan onderaan, nooit tussen de
+afspraken.
 
 Heeft een dag geen echte afspraken, sla die dag dan stil over — geen lege
 Meetings-node. Zijn beide dagen leeg, sla de hele stap over.
