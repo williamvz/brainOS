@@ -54,6 +54,25 @@ plaats van uit de naam — alleen getagde nodes dragen hun datum in de naam.
 Stap 9 beschrijft de werkwijze. Wie hier de tag als filter gebruikt, mist
 stelselmatig de helft van de dag zonder dat er iets kapot lijkt.
 
+**Op welke agenda een afspraak staat, zegt niets.** De iOS-automatisering
+schrijft niet alles naar dezelfde agenda: ze verdeelt de dag over de
+werkagenda en de privé-agenda. Die verdeling volgt geen eigenschap van de
+afspraak — niet de organisator, niet de deelnemers, niet de locatie, en ook
+niet of het een Teams-call of een fysieke afspraak is.
+
+Ze is zelfs niet stabiel. Op 23 september 2026 liep dezelfde lijst van negen
+afspraken twee keer, drie uur na elkaar; drie ervan kwamen de tweede keer op
+de ándere agenda terecht. Per run schrijft de automatisering een blok naar de
+ene agenda, klapt halverwege de lus één keer om, en laat de rest naar de
+andere gaan — de ene keer na de vijfde afspraak, de andere keer na de zesde.
+Het is dus een positiefout in de lus, geen keuze per afspraak.
+
+Voor de Dagstart volgt daar tweeërlei uit. Lees altijd álle agenda's en voeg
+ze samen: een werkafspraak kan net zo goed op de privé-agenda staan.
+En ontdubbel over de agenda's heen in plaats van per agenda — draait de
+automatisering twee keer op een dag, dan staat een afspraak dubbel, en die
+twee kopieën staan lang niet altijd bij elkaar.
+
 **Twee schrijvers maken twee blokken.** Zowel de koppeling als de Dagstart
 kan een node met een datumveld maken, en alles met een datumveld verschijnt
 in de agendaweergave. Daarom maakt de Dagstart er zelf geen meer: de node van
