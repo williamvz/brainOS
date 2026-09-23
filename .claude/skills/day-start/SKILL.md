@@ -26,10 +26,13 @@ Bepaal eerst de datum en tijd in Europe/Amsterdam via bash
 Haal de events van vandaag 00:00 t/m overmorgen 00:00 (Europe/Amsterdam) op
 uit de agenda's die van William zijn — doorgaans een privé-agenda, een
 werkagenda en een gezinsagenda. Gebruik `list_calendars` om ze te vinden in
-plaats van ID's hard te coderen. De werkagenda levert vaak elke afspraak
-dubbel aan; ontdubbel op titel plus starttijd voordat je verder werkt.
-Sorteer chronologisch, hele-dag-events bovenaan. Bewaar per event de
-`htmlLink`.
+plaats van ID's hard te coderen. Gooi ze daarna op één hoop en ontdubbel
+dáár op titel plus starttijd — over de agenda's heen, niet per agenda. Dezelfde
+afspraak komt geregeld twee keer binnen, en die twee kopieën staan lang niet
+altijd op dezelfde agenda; ontdubbel je per agenda, dan glipt juist dat paar
+erdoor. Welke agenda een afspraak draagt zegt verder niets over wat het is —
+zie `docs/agenda-keten.md`. Sorteer chronologisch, hele-dag-events bovenaan.
+Bewaar per event de `htmlLink`.
 
 Je haalt dus twee dagen op, met elk hun eigen rol. **Vandaag** is de
 briefing: de pagina, de beslissingen, het pushbericht gaan over vandaag.
