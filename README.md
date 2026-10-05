@@ -39,8 +39,9 @@ Bronnen: Google Calendar, Gmail, Notion, Tana (Outliner), n8n en Buffer.
   Outlook via de iOS-automatisering (05:00) en Tana's Google
   Calendar-koppeling (rond 09:00) in Tana belandt, wat dat betekent voor hoe
   vers de agenda is, waarom de supertag onbruikbaar is als zoeksleutel,
-  waarom het niets zegt op welke agenda een afspraak staat, en de tijdzoneval
-  bij datumvelden. Naslag voor `day-start`.
+  waarom het niets zegt op welke agenda een afspraak staat en hoe `day-start`
+  dat elke ochtend rechtzet, en de tijdzoneval bij datumvelden. Naslag voor
+  `day-start`.
 - **[docs/outliner-taken.md](docs/outliner-taken.md)** — hoe `#task` en
   `#recurring task` zich verhouden, hoe je een terugkerende taak afrondt
   zonder hem definitief te sluiten, en de triage-zoekopdracht "Inbox" die
