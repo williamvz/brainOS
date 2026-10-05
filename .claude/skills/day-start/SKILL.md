@@ -26,13 +26,59 @@ Bepaal eerst de datum en tijd in Europe/Amsterdam via bash
 Haal de events van vandaag 00:00 t/m overmorgen 00:00 (Europe/Amsterdam) op
 uit de agenda's die van William zijn — doorgaans een privé-agenda, een
 werkagenda en een gezinsagenda. Gebruik `list_calendars` om ze te vinden in
-plaats van ID's hard te coderen. Gooi ze daarna op één hoop en ontdubbel
-dáár op titel plus starttijd — over de agenda's heen, niet per agenda. Dezelfde
-afspraak komt geregeld twee keer binnen, en die twee kopieën staan lang niet
-altijd op dezelfde agenda; ontdubbel je per agenda, dan glipt juist dat paar
-erdoor. Welke agenda een afspraak draagt zegt verder niets over wat het is —
-zie `docs/agenda-keten.md`. Sorteer chronologisch, hele-dag-events bovenaan.
-Bewaar per event de `htmlLink`.
+plaats van ID's hard te coderen.
+
+Zet daarna eerst de agenda's recht — zie het blok hieronder. Gooi de
+afspraken pas dán op één hoop en ontdubbel dáár op titel plus starttijd:
+over de agenda's heen, niet per agenda. Dezelfde afspraak komt geregeld
+twee keer binnen, en die twee kopieën staan lang niet altijd op dezelfde
+agenda; ontdubbel je per agenda, dan glipt juist dat paar erdoor. Sorteer
+chronologisch, hele-dag-events bovenaan. Bewaar per event de `htmlLink`.
+
+### Zet de kopieën van de automatisering op de werkagenda
+
+De iOS-automatisering kiest zelf op welke agenda zij een afspraak zet, en
+die keuze is kapot: dezelfde afspraak belandt de ene ochtend op de
+werkagenda en de volgende op de privé-agenda. Zie `docs/agenda-keten.md`.
+De afspraak is er één: alles wat de automatisering uit Outlook kopieert
+hoort op de werkagenda, de privé-agenda is van William alleen. De Dagstart
+zet dat elke ochtend recht. **Dit is de enige plek waar de Dagstart naar
+Google Calendar schrijft; overal elders leest zij alleen.**
+
+**Herkennen.** Elke afspraak die de automatisering maakt draagt in haar
+beschrijving de zin `Created by Apple shortcuts`. Dat is je enige kenmerk.
+Niet de titel, niet de organisator, niet of er een Teams-link in staat, en
+vooral niet het `Added to:`-label in diezelfde beschrijving — dat noemt
+geregeld de verkeerde agenda en is juist het symptoom. Williams eigen
+afspraken dragen de zin nooit, dus die blijven onaangeroerd.
+
+**Verplaatsen.** Loop de afspraken van vandaag en morgen langs die de zin
+dragen en niet op de werkagenda staan. Per afspraak:
+
+1. Staat op de werkagenda al iets met dezelfde titel én starttijd, dan is
+   dit een dubbele. Verwijder alleen het exemplaar op de andere agenda.
+2. Zo niet: maak hem eerst aan op de werkagenda — titel, begin, eind,
+   tijdzone, locatie, hele-dag-vlag en de beschrijving letterlijk
+   overgenomen — en verwijder hem pas daarna van de oude agenda. Nooit
+   andersom. Mislukt stap twee, dan houd je een zichtbare dubbele over;
+   draai je de volgorde om en mislukt het aanmaken, dan is de afspraak weg.
+3. Zet bij beide calls `notificationLevel` op `NONE`, zodat er geen mail
+   naar deelnemers gaat.
+
+Verplaats niets en meld het in de briefing wanneer een afspraak een
+`recurringEventId` heeft — die hoort bij een reeks en knip je niet los — of
+wanneer er op één dag meer dan 25 te verplaatsen zijn. Dat laatste is geen
+normale ochtend.
+
+**Vind je er nul, kijk dan of dat klopt.** Staan er afspraken van de
+automatisering (herkenbaar aan het `Attendeees:`-blok in de beschrijving)
+maar draagt geen enkele de zin, dan is de markering in de Shortcut
+veranderd of weggevallen. Verplaats dan niets en zet één regel in de
+briefing dat de markering weg is. Zwijgen is hier het gevaarlijkst: niets
+verplaatsen ziet er precies zo uit als niets te verplaatsen hebben.
+
+Noem onder aan de briefing in één regel wat je hebt verplaatst, of laat die
+regel weg als er niets te doen was.
 
 Je haalt dus twee dagen op, met elk hun eigen rol. **Vandaag** is de
 briefing: de pagina, de beslissingen, het pushbericht gaan over vandaag.

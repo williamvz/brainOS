@@ -67,11 +67,23 @@ ene agenda, klapt halverwege de lus één keer om, en laat de rest naar de
 andere gaan — de ene keer na de vijfde afspraak, de andere keer na de zesde.
 Het is dus een positiefout in de lus, geen keuze per afspraak.
 
-Voor de Dagstart volgt daar tweeërlei uit. Lees altijd álle agenda's en voeg
-ze samen: een werkafspraak kan net zo goed op de privé-agenda staan.
-En ontdubbel over de agenda's heen in plaats van per agenda — draait de
+Het label liegt er bovendien over. Sinds eind september zet de
+automatisering in elke beschrijving welke agenda zij gekozen heeft. Over
+24 afspraken op 28 en 29 september klopte dat label zeven keer niet met de
+agenda waar de afspraak op stond — en dat ging beide kanten op. Waar een
+afspraak terechtkomt is dus niet te voorspellen uit de afspraak zelf, en
+ook niet uit wat de automatisering er zelf over zegt.
+
+Voor de Dagstart volgt daar drieërlei uit. Lees altijd álle agenda's en
+voeg ze samen: een werkafspraak kan net zo goed op de privé-agenda staan.
+Ontdubbel over de agenda's heen in plaats van per agenda — draait de
 automatisering twee keer op een dag, dan staat een afspraak dubbel, en die
-twee kopieën staan lang niet altijd bij elkaar.
+twee kopieën staan lang niet altijd bij elkaar. En zet de verdeling recht
+voordat je verder leest: elke afspraak die de automatisering maakt draagt
+de zin `Created by Apple shortcuts` in haar beschrijving, en alles met die
+zin hoort op de werkagenda. Stap 2 beschrijft de werkwijze. Let op de
+volgorde daar: eerst aanmaken op de werkagenda, dan pas verwijderen van de
+oude. Andersom raak je bij een fout de afspraak kwijt.
 
 **Twee schrijvers maken twee blokken.** Zowel de koppeling als de Dagstart
 kan een node met een datumveld maken, en alles met een datumveld verschijnt
